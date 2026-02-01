@@ -11,7 +11,7 @@ import { Doc } from '@/lib/docs-mock';
 
 export function useDocumentChunking(document: Doc): DocumentChunk[] {
     return useMemo(() => {
-        return chunkDocument(document.id, document.title, document.content);
+        return chunkDocument(document.id, document.title, document.content || '');
     }, [document.id, document.title, document.content]);
 }
 
@@ -25,7 +25,7 @@ export function useAllDocumentsChunking(documents: Doc[]): DocumentChunk[] {
         const allChunks: DocumentChunk[] = [];
 
         for (const doc of documents) {
-            const chunks = chunkDocument(doc.id, doc.title, doc.content);
+            const chunks = chunkDocument(doc.id, doc.title, doc.content || '');
             allChunks.push(...chunks);
         }
 
