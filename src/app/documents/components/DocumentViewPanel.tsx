@@ -24,9 +24,9 @@ export function DocumentViewPanel({ documentTitle, chunks, highlightId }: Props)
     return (
         <div className="flex-1 flex flex-col overflow-hidden bg-slate-100">
             {/* Header */}
-            <header className="p-4 lg:p-6 border-b border-slate-200 bg-white/90 backdrop-blur-sm flex items-center justify-between">
+            <header className="p-3 lg:p-6 border-b border-slate-200 bg-white/90 backdrop-blur-sm flex items-center justify-between sticky top-0 z-10">
                 <div className="flex items-center gap-3 flex-1 min-w-0">
-                    <div className="p-2 bg-slate-900 text-white rounded-lg shrink-0">
+                    <div className="p-2 bg-slate-900 text-white rounded-lg shrink-0 hidden lg:block">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="16"
@@ -43,35 +43,35 @@ export function DocumentViewPanel({ documentTitle, chunks, highlightId }: Props)
                         </svg>
                     </div>
                     <div className="flex-1 min-w-0">
-                        <h2 className="font-bold text-slate-900 text-base lg:text-lg leading-tight truncate">
+                        <h2 className="font-bold text-slate-900 text-sm lg:text-lg leading-tight line-clamp-2">
                             {documentTitle}
                         </h2>
                         <div className="flex items-center gap-2 mt-0.5">
-                            <p className="text-xs text-slate-500">
+                            <p className="text-[10px] lg:text-xs text-slate-500">
                                 共 {chunks.length} 個段落
                             </p>
                         </div>
                     </div>
 
                     {/* View Toggle */}
-                    <div className="flex p-0.5 bg-slate-100 rounded-lg border border-slate-200">
+                    <div className="flex p-0.5 bg-slate-100 rounded-lg border border-slate-200 shrink-0 ml-2">
                         <button
                             onClick={() => setViewMode('markdown')}
-                            className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all ${viewMode === 'markdown'
-                                    ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
-                                    : 'text-slate-500 hover:text-slate-700'
+                            className={`px-2.5 py-1.5 text-[10px] lg:text-xs font-semibold rounded-md transition-all ${viewMode === 'markdown'
+                                ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
+                                : 'text-slate-500 hover:text-slate-700'
                                 }`}
                         >
-                            文件模式
+                            文件
                         </button>
                         <button
                             onClick={() => setViewMode('rag')}
-                            className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all ${viewMode === 'rag'
-                                    ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
-                                    : 'text-slate-500 hover:text-slate-700'
+                            className={`px-2.5 py-1.5 text-[10px] lg:text-xs font-semibold rounded-md transition-all ${viewMode === 'rag'
+                                ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
+                                : 'text-slate-500 hover:text-slate-700'
                                 }`}
                         >
-                            資料視角
+                            資料
                         </button>
                     </div>
                 </div>
@@ -79,7 +79,7 @@ export function DocumentViewPanel({ documentTitle, chunks, highlightId }: Props)
 
             {/* Document Content */}
             <main className="flex-1 overflow-y-auto">
-                <div className="p-4 lg:p-8">
+                <div className="p-3 lg:p-8">
                     {viewMode === 'markdown' ? (
                         <DocumentViewer chunks={chunks} highlightId={highlightId} />
                     ) : (

@@ -6,6 +6,7 @@ import { useDocumentChunking, useAllDocumentsChunking } from "@/hooks/useDocumen
 import { useScrollToHighlight } from "@/hooks/useScrollToHighlight";
 import { DocumentListPanel } from "./components/DocumentListPanel";
 import { DocumentViewPanel } from "./components/DocumentViewPanel";
+import { MobileDocumentSelector } from "./components/MobileDocumentSelector";
 import { QAPanel } from "./components/QAPanel";
 import { AIQAPanel } from "@/components/documents/AIQAPanel";
 import { useQAService } from "@/hooks/useQAService";
@@ -146,32 +147,16 @@ export default function DocumentsPage() {
 
     return (
         <div className="h-full min-h-screen bg-slate-50 flex flex-col overflow-hidden">
-            {/* Mobile Tab Navigation */}
-            <div className="lg:hidden border-b border-slate-200 bg-white sticky top-0 z-20">
-                <div className="flex">
-                    <button
-                        onClick={() => setMobileTab("document")}
-                        className={cx(
-                            "flex-1 py-3 text-sm font-semibold transition-colors",
-                            mobileTab === "document"
-                                ? "text-slate-900 border-b-2 border-slate-900"
-                                : "text-slate-500"
-                        )}
-                    >
-                        文件
-                    </button>
-                    <button
-                        onClick={() => setMobileTab("ai")}
-                        className={cx(
-                            "flex-1 py-3 text-sm font-semibold transition-colors",
-                            mobileTab === "ai"
-                                ? "text-slate-900 border-b-2 border-slate-900"
-                                : "text-slate-500"
-                        )}
-                    >
-                        問答
-                    </button>
-                </div>
+            {/* Mobile Document Selector */}
+            <div className={cx(
+                "lg:hidden",
+                mobileTab !== "document" ? "hidden" : "block"
+            )}>
+                <MobileDocumentSelector
+                    documents={documents}
+                    selectedDocId={selectedDoc.id}
+                    onSelectDoc={handleSelectDoc}
+                />
             </div>
 
             {/* Main Content */}
@@ -183,26 +168,6 @@ export default function DocumentsPage() {
                     collapsed={leftPanelCollapsed}
                     onToggleCollapse={() => setLeftPanelCollapsed(!leftPanelCollapsed)}
                 />
-
-                {/* Mobile Document Selector */}
-                <div
-                    className={cx(
-                        "lg:hidden w-full border-b border-slate-200 bg-white p-3",
-                        mobileTab !== "document" ? "hidden" : "block"
-                    )}
-                >
-                    <select
-                        value={selectedDoc.id}
-                        onChange={(e) => handleSelectDoc(e.target.value)}
-                        className="w-full px-4 py-2 border border-slate-200 rounded-lg font-semibold text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900"
-                    >
-                        {documents.map((doc) => (
-                            <option key={doc.id} value={doc.id}>
-                                {doc.title}
-                            </option>
-                        ))}
-                    </select>
-                </div>
 
                 {/* Center: Document Viewer */}
                 <div
@@ -252,6 +217,38 @@ export default function DocumentsPage() {
                         allChunks={allChunks}
                         onJumpToParagraph={handleJumpToParagraph}
                     />
+                </div>
+            </div>
+
+            {/* Mobile Bottom Tab Bar */}
+            <div className="lg:hidden bg-white border-t border-slate-200 pb-safe z-30">
+                <div className="flex items-center justify-around">
+                    <button
+                        onClick={() => setMobileTab("document")}
+                        className={cx(
+                            "flex-1 py-3 flex flex-col items-center gap-1 transition-colors relative",
+                            mobileTab === "document" ? "text-slate-900" : "text-slate-400 hover:text-slate-600"
+                        )}
+                    >
+                        <div className="relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" /><polyline points="14 2 14 8 20 8" /></svg>
+                            {mobileTab === "document" && <span className="absolute -top-1 -right-1 w-2 h-2 bg-slate-900 rounded-full animate-in zoom-in" />}
+                        </div>
+                        <span className="text-[10px] font-bold tracking-wide">文件閱讀</span>
+                    </button>
+                    <button
+                        onClick={() => setMobileTab("ai")}
+                        className={cx(
+                            "flex-1 py-3 flex flex-col items-center gap-1 transition-colors relative",
+                            mobileTab === "ai" ? "text-indigo-600" : "text-slate-400 hover:text-slate-600"
+                        )}
+                    >
+                        <div className="relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={mobileTab === "ai" ? "2.5" : "2"} strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" /></svg>
+                            {mobileTab === "ai" && <span className="absolute -top-1 -right-1 w-2 h-2 bg-indigo-500 rounded-full animate-in zoom-in" />}
+                        </div>
+                        <span className={cx("text-[10px] font-bold tracking-wide", mobileTab === "ai" && "text-indigo-600")}>AI 顧問</span>
+                    </button>
                 </div>
             </div>
         </div>

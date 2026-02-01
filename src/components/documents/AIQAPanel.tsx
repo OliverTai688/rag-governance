@@ -187,9 +187,9 @@ export function AIQAPanel({
 
                             {/* Body */}
                             <div
-                                className={`rounded-2xl p-4 text-sm leading-relaxed shadow-sm ${isUser
-                                    ? 'bg-slate-900 text-white ml-8 rounded-tr-none'
-                                    : (isTouring && i === messages.length - 1 ? 'bg-indigo-50 border-indigo-100 text-slate-800' : 'bg-white text-slate-800') + ' mr-8 border border-slate-200 rounded-tl-none prose prose-sm prose-slate max-w-none'
+                                className={`rounded-2xl p-3 lg:p-4 text-sm leading-relaxed shadow-sm ${isUser
+                                    ? 'bg-slate-900 text-white ml-4 lg:ml-8 rounded-tr-none'
+                                    : (isTouring && i === messages.length - 1 ? 'bg-indigo-50 border-indigo-100 text-slate-800' : 'bg-white text-slate-800') + ' mr-4 lg:mr-8 border border-slate-200 rounded-tl-none prose prose-sm prose-slate max-w-none'
                                     }`}
                             >
                                 <div className="overflow-x-auto overflow-y-hidden">
@@ -277,7 +277,7 @@ export function AIQAPanel({
             </div>
 
             {/* Input Overlay */}
-            <div className="p-4 lg:p-6 border-t border-slate-200 bg-white relative z-10">
+            <div className="p-3 lg:p-6 border-t border-slate-200 bg-white relative z-10 pb-safe">
                 {isTouring && (
                     <div className="absolute top-0 right-6 -translate-y-1/2">
                         <button
