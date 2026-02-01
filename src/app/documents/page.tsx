@@ -146,9 +146,10 @@ export default function DocumentsPage() {
     }
 
     return (
-        <div className="h-full min-h-screen bg-slate-50 flex flex-col overflow-hidden">
+    return (
+        <div className="h-[100dvh] bg-slate-50 flex flex-col overflow-hidden">
             {/* Mobile Document Selector - Visible on all tabs for context */}
-            <div className="lg:hidden block">
+            <div className="lg:hidden block sticky top-0 z-40">
                 <MobileDocumentSelector
                     documents={documents}
                     selectedDocId={selectedDoc.id}
@@ -157,7 +158,7 @@ export default function DocumentsPage() {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 flex overflow-hidden">
+            <div className="flex-1 flex overflow-hidden lg:mb-0 mb-[60px]">
                 {/* Left: Document List (Desktop Only) */}
                 <DocumentListPanel
                     selectedDocId={selectedDoc.id}
@@ -218,12 +219,12 @@ export default function DocumentsPage() {
             </div>
 
             {/* Mobile Bottom Tab Bar */}
-            <div className="lg:hidden bg-white border-t border-slate-200 pb-safe z-30">
-                <div className="flex items-center justify-around">
+            <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 pb-safe z-50 h-[60px]">
+                <div className="flex items-center justify-around h-full">
                     <button
                         onClick={() => setMobileTab("document")}
                         className={cx(
-                            "flex-1 py-3 flex flex-col items-center gap-1 transition-colors relative",
+                            "flex-1 h-full flex flex-col items-center justify-center gap-1 transition-colors relative",
                             mobileTab === "document" ? "text-slate-900" : "text-slate-400 hover:text-slate-600"
                         )}
                     >
@@ -236,7 +237,7 @@ export default function DocumentsPage() {
                     <button
                         onClick={() => setMobileTab("ai")}
                         className={cx(
-                            "flex-1 py-3 flex flex-col items-center gap-1 transition-colors relative",
+                            "flex-1 h-full flex flex-col items-center justify-center gap-1 transition-colors relative",
                             mobileTab === "ai" ? "text-indigo-600" : "text-slate-400 hover:text-slate-600"
                         )}
                     >
