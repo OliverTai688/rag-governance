@@ -146,7 +146,7 @@ export default function DocumentsPage() {
     }
 
     return (
-    return (
+
         <div className="h-[100dvh] bg-slate-50 flex flex-col overflow-hidden">
             {/* Mobile Document Selector - Visible on all tabs for context */}
             <div className="lg:hidden block sticky top-0 z-40">
