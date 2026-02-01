@@ -1,0 +1,347 @@
+@import "tailwindcss";
+
+/**
+ * Design System Foundation
+ * Consultant-Controlled Governance Workspace
+ * 
+ * Typography Scale: H1-H5 + Body + Functional
+ * Spacing System: 4px base grid
+ * Color Palette: Calm authority (slate-based)
+ */
+
+@theme {
+  /* Typography - Font Families */
+  --font-sans: "Inter", "Noto Sans TC", system-ui, -apple-system, sans-serif;
+
+  /* Primary Palette */
+  --color-slate-950: #0a0f1a;
+  --color-slate-900: #0f172a;
+  --color-slate-800: #1e293b;
+  --color-slate-700: #334155;
+  --color-slate-600: #475569;
+  --color-slate-500: #64748b;
+  --color-slate-400: #94a3b8;
+  --color-slate-300: #cbd5e1;
+  --color-slate-200: #e2e8f0;
+  --color-slate-100: #f1f5f9;
+  --color-slate-50: #f8fafc;
+
+  /* Semantic Colors */
+  --color-blue-600: #2563eb;
+  --color-blue-500: #3b82f6;
+  --color-blue-100: #dbeafe;
+  --color-blue-50: #eff6ff;
+
+  --color-amber-600: #d97706;
+  --color-amber-100: #fef3c7;
+
+  --color-emerald-600: #059669;
+  --color-emerald-100: #d1fae5;
+
+  /* Spacing Scale (4px base) */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+:root {
+  /* Functional Color Assignment */
+  --color-text-primary: var(--color-slate-950);
+  --color-text-secondary: var(--color-slate-700);
+  --color-text-tertiary: var(--color-slate-500);
+  --color-text-disabled: var(--color-slate-400);
+
+  --color-border-default: var(--color-slate-200);
+  --color-border-subtle: var(--color-slate-100);
+
+  --color-bg-base: var(--color-slate-50);
+  --color-bg-elevated: #ffffff;
+  --color-bg-subtle: var(--color-slate-100);
+
+  --color-interactive-primary: var(--color-slate-900);
+  --color-interactive-hover: var(--color-slate-800);
+
+  --color-accent-primary: var(--color-blue-600);
+  --color-accent-bg: var(--color-blue-50);
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-base);
+}
+
+/* Typography Scale */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 900;
+  color: var(--color-slate-900);
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.02em;
+  font-weight: 900;
+}
+
+h2 {
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.01em;
+  font-weight: 800;
+}
+
+h3 {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 700;
+}
+
+h4 {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+h5 {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+/* Reusable Component Styles */
+.governance-page-header {
+  @apply mb-12 pb-6 border-b border-slate-200;
+}
+
+.governance-page-title {
+  @apply text-3xl font-black text-slate-900 tracking-tight mb-2;
+}
+
+.governance-page-subtitle {
+  @apply text-slate-500 font-medium;
+}
+
+.governance-card {
+  @apply bg-white rounded-xl border border-slate-200 p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow;
+}
+
+.governance-section-header {
+  @apply text-xs font-bold text-slate-400 uppercase tracking-wider mb-3;
+}
+
+.governance-metadata {
+  @apply text-xs font-bold text-slate-500 uppercase tracking-wide;
+}
+
+/* Table Styles */
+.governance-table {
+  @apply w-full border-collapse;
+}
+
+.governance-table thead {
+  @apply bg-slate-50;
+}
+
+.governance-table th {
+  @apply px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-slate-700;
+}
+
+.governance-table td {
+  @apply px-6 py-4 text-sm text-slate-600 border-t border-slate-100;
+}
+
+/* Citation Block */
+.citation-block {
+  @apply p-4 bg-blue-50/50 border-l-4 border-blue-600 rounded-r-lg;
+}
+
+.citation-title {
+  @apply text-xs font-bold text-blue-900 uppercase tracking-wide mb-2;
+}
+
+.citation-excerpt {
+  @apply text-sm text-blue-800/80 italic leading-relaxed mb-2;
+}
+
+.citation-id {
+  @apply text-xs text-blue-600 font-mono;
+}
+
+/* Roadmap Timeline */
+.roadmap-phase-dot {
+  @apply w-14 h-14 rounded-full bg-white border-4 border-slate-900 flex items-center justify-center font-black text-lg shadow-md;
+}
+
+.roadmap-phase-card {
+  @apply bg-white rounded-xl border border-slate-200 p-8 shadow-sm hover:shadow-md transition-shadow;
+}
+
+/* AI Chat */
+.ai-message-user {
+  @apply max-w-[85%] px-5 py-3 bg-slate-900 text-white rounded-2xl rounded-br-sm shadow-lg;
+}
+
+.ai-message-assistant {
+  @apply max-w-[90%] px-5 py-4 bg-slate-100 text-slate-800 rounded-2xl rounded-bl-sm border border-slate-200;
+}
+
+/* Prose Enhancements for Markdown */
+.prose {
+  @apply max-w-none;
+}
+
+.prose h1 {
+  @apply text-3xl font-black text-slate-900 mb-6 mt-8 first:mt-0;
+}
+
+.prose h2 {
+  @apply text-2xl font-bold text-slate-900 mb-4 mt-8 pb-3 border-b border-slate-100;
+}
+
+.prose h3 {
+  @apply text-xl font-bold text-slate-800 mb-3 mt-6;
+}
+
+.prose p {
+  @apply text-slate-700 leading-relaxed mb-4;
+}
+
+.prose table {
+  @apply w-full border border-slate-200 rounded-lg overflow-hidden my-6;
+}
+
+.prose thead {
+  @apply bg-slate-50;
+}
+
+.prose th {
+  @apply px-4 py-3 text-left text-xs font-bold uppercase text-slate-700 border-b border-slate-200;
+}
+
+.prose td {
+  @apply px-4 py-3 text-sm text-slate-600 border-b border-slate-100;
+}
+
+.prose code {
+  @apply px-2 py-0.5 bg-slate-100 text-slate-800 rounded text-sm font-mono;
+}
+
+@plugin "@tailwindcss/typography";
+
+.prose ul,
+.prose ol {
+  @apply my-4 space-y-2 pl-2;
+}
+
+.prose ul {
+  list-style-type: disc !important;
+  list-style-position: inside !important;
+}
+
+.prose ol {
+  list-style-type: decimal !important;
+  list-style-position: inside !important;
+}
+
+.prose li {
+  @apply text-slate-700 pl-2;
+}
+
+.prose li::marker {
+  @apply text-slate-400;
+}
+
+
+.prose a {
+  @apply text-blue-600 hover:text-blue-700 underline;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-slate-300 pl-4 italic text-slate-600 my-4;
+}
+
+.prose hr {
+  @apply my-8 border-t border-slate-200;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-slate-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-slate-300);
+  border-radius: 6px;
+  border: 3px solid var(--color-slate-100);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-slate-400);
+}
+
+/* Focus Styles for Accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-blue-600);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

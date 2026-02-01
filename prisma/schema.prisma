@@ -1,0 +1,106 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Project {
+  id          String     @id @default(cuid())
+  name        String
+  description String
+  scopeIn     String[]
+  scopeOut    String[]
+  rhythm      String
+  status      String
+  documents   Document[]
+  plans       Plan[]
+  meetings    Meeting[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Document {
+  id        String          @id @default(cuid())
+  title     String
+  type      String          // Charter, Plan, Process, Meeting
+  content   String?
+  projectId String
+  project   Project         @relation(fields: [projectId], references: [id])
+  chunks    DocumentChunk[]
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+}
+
+model DocumentChunk {
+  id                 String   @id @default(cuid())
+  documentId         String
+  document           Document @relation(fields: [documentId], references: [id])
+  content            String
+  sectionTitle       String?
+  paragraphIndex     Int
+  stableParagraphId  String   @unique
+  embedding          Float[]  // Vector for RAG (using pgvector)
+  createdAt          DateTime @default(now())
+}
+
+model Plan {
+  id          String      @id @default(cuid())
+  name        String
+  fee         String
+  scope       String
+  dbSetup     String
+  rhythm      String
+  ssot        String
+  riskAlerts  String
+  profiling   String
+  kpi         String
+  training    String
+  period      String
+  maturity    String?     // For 250K only
+  phases      PlanPhase[]
+  projectId   String
+  project     Project     @relation(fields: [projectId], references: [id])
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model PlanPhase {
+  id             String   @id @default(cuid())
+  planId         String
+  plan           Plan     @relation(fields: [planId], references: [id])
+  phaseIndex     Int      // 0-4
+  objective      String
+  actions        String[]
+  deliverables   String[]
+  impact         String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Meeting {
+  id           String         @id @default(cuid())
+  title        String
+  date         DateTime
+  discussion   String
+  decisions    String[]
+  actionItems  String[]
+  projectId    String
+  project      Project        @relation(fields: [projectId], references: [id])
+  chunks       MeetingChunk[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+}
+
+model MeetingChunk {
+  id                 String   @id @default(cuid())
+  meetingId          String
+  meeting            Meeting  @relation(fields: [meetingId], references: [id])
+  content            String
+  paragraphIndex     Int
+  stableParagraphId  String   @unique
+  embedding          Float[]
+  createdAt          DateTime @default(now())
+}
