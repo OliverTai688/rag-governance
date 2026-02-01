@@ -42,7 +42,7 @@ export function DocumentViewPanel({ documentTitle, chunks, highlightId }: Props)
                             <polyline points="14 2 14 8 20 8" />
                         </svg>
                     </div>
-                    <div className="flex-1 min-w-0">
+                    <div className="flex-1 min-w-0 lg:block hidden">
                         <h2 className="font-bold text-slate-900 text-sm lg:text-lg leading-tight line-clamp-2">
                             {documentTitle}
                         </h2>

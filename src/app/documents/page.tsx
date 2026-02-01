@@ -147,11 +147,8 @@ export default function DocumentsPage() {
 
     return (
         <div className="h-full min-h-screen bg-slate-50 flex flex-col overflow-hidden">
-            {/* Mobile Document Selector */}
-            <div className={cx(
-                "lg:hidden",
-                mobileTab !== "document" ? "hidden" : "block"
-            )}>
+            {/* Mobile Document Selector - Visible on all tabs for context */}
+            <div className="lg:hidden block">
                 <MobileDocumentSelector
                     documents={documents}
                     selectedDocId={selectedDoc.id}

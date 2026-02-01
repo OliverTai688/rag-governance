@@ -29,20 +29,19 @@ export function MobileDocumentSelector({ documents, selectedDocId, onSelectDoc }
 
     return (
         <div className="relative z-30">
-            {/* Trigger Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="w-full flex items-center justify-between p-3 bg-white border-b border-slate-200 active:bg-slate-50 transition-colors"
             >
-                <div>
+                <div className="flex-1 min-w-0 mr-3">
                     <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400 block mb-0.5 text-left">
                         Reading
                     </span>
-                    <h2 className="font-bold text-slate-900 text-sm flex items-center gap-2">
+                    <h2 className="font-bold text-slate-900 text-sm flex items-center gap-2 truncate">
                         {selectedDoc?.title || '選擇文件'}
                     </h2>
                 </div>
-                <div className={`p-1.5 rounded-full bg-slate-100 text-slate-500 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>
+                <div className={`p-1.5 rounded-full bg-slate-100 text-slate-500 transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180' : ''}`}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
                 </div>
             </button>
@@ -69,8 +68,8 @@ export function MobileDocumentSelector({ documents, selectedDocId, onSelectDoc }
                                             setIsOpen(false);
                                         }}
                                         className={`w-full text-left p-3 rounded-xl transition-all flex items-start gap-3 ${isSelected
-                                                ? 'bg-slate-900 text-white shadow-sm'
-                                                : 'text-slate-700 hover:bg-slate-50 active:scale-[0.98]'
+                                            ? 'bg-slate-900 text-white shadow-sm'
+                                            : 'text-slate-700 hover:bg-slate-50 active:scale-[0.98]'
                                             }`}
                                     >
                                         <div className={`mt-0.5 p-1.5 rounded-lg shrink-0 ${isSelected ? 'bg-white/10' : 'bg-slate-100'}`}>
